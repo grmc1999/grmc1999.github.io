@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 ---
 
 # Notes on: Improved Variational Inference with Inverse Autoregressive Flow

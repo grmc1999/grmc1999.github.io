@@ -14,7 +14,7 @@ Idea of context in latent variable: $$q(z_a,z_b|x)=q(z_a,x)q(z_b|z_a,x)$$ $$\sqr
 
 ## COMPUTATIONAL INTRACTABILITY
 
-1. Computationally efficient to compute and differentiate $q(z|x)$
+1. Computationally efficient to compute and differentiate $$q(z|x)$$
 2. Computationally efficient to sample
 
 ## Remark Normalizing Flows (NF):

@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Notes on: Improved Variational Inference with Inverse Autoregressive Flow
 
 Inverse Autoregressive Flows scale well in high dimensional latent spaces

@@ -1,9 +1,3 @@
-baseurl: /cs228-notes
-title: Probabilistic graphical modeling course
-subtitle: Lecture notes for Stanford cs228.
-author: Volodymyr Kuleshov
-simple_search: http://google.com/search
-description: Lecture notes for Stanford cs228.
 name: cs228-notes
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 permalink: /articles/:short_year/:title

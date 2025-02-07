@@ -1,15 +1,13 @@
-
-
 <!DOCTYPE html>
-	<html>
-		<head>
+<html>
+  <head>
 			<title>{{ page.title }}</title>
 			<!-- link to main stylesheet -->
 			<link rel="stylesheet" type="text/css" href="/css/main.css">
 			<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 		</head>
-		<body>
-			<nav>
+  <body>
+<nav>
 	    		<ul>
 	        		<li><a href="/">Home</a></li>
 		        	<li><a href="/about">About</a></li>
@@ -18,43 +16,17 @@
 	        		<li><a href="/summaries">summaries</a></li>
 	    		</ul>
 			</nav>
-			<div class="container">
-
-			<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    TeX: {
-      Macros: {
-        e: "\\epsilon",
-        xti: "x^{(i)}",
-        yti: "y^{(i)}",
-        bfy: "{\\bf y}",
-        bfx: "{\\bf x}",
-        bfg: "{\\bf g}",
-        bfbeta: "{\\bf \\beta}",
-        tp: "\\tilde p",
-        pt: "p_\\theta",
-        E: "{\\mathbb{E}}",
-        Ind: "{\\mathbb{I}}",
-        KL: "{\\mathbb{KL}}",
-        Re: "{\\mathbb{R}}",
-        Dc: "{\\mathcal{D}}",
-        Tc: "{\\mathcal{T}}",
-        Xc: "{\\mathcal{X}}",
-        note: ["\\textcolor{blue}{[NOTE: #1]}",1]
-      }
-    }
-  });
-</script>
-			
-			{{ content }}
-			
-			</div><!-- /.container -->
-			<footer>
+    
+    <article class="group">
+      {{ content }}
+    </article>
+<footer>
 	    		<ul>
 	        		<li><a href="mailto:grmc1999@gmail.com">grmc1999</a></li>
 	        		<li><a href="https://github.com/grmc1999">github.com/grmc1999</a></li>
 				<li><a href="https://www.linkedin.com/in/guillermo-ricardo-moreno-carrillo-203a75245/">LinkedIn</a></li>
 				</ul>
 			</footer>
-		</body>
-	</html>
+  </body>
+</html>
+

@@ -19,7 +19,3 @@ page:
 editor: gvim
 git:
   branch: master
-transfer:
-  command: rsync
-  settings: -av
-  source: _site/

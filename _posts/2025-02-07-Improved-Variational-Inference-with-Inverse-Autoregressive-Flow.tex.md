@@ -10,7 +10,7 @@ $$
 L(x,\theta) =\log p(x)-\mathbb D_{KL}(q(z|x)\Vert p(z|x))
 $$
 
-Idea of context in latent variable: $$q(z_a,z_b|x)=q(z_a,x)q(z_b|z_a,x)`$ $`\sqrt{3x-1}+(1+x)^2$$
+Idea of context in latent variable: $$q(z_a,z_b|x)=q(z_a,x)q(z_b|z_a,x)$$ $$\sqrt{3x-1}+(1+x)^2$$
 
 ## COMPUTATIONAL INTRACTABILITY
 

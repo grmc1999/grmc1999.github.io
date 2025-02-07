@@ -1,3 +1,6 @@
+---
+layout: post
+---
 # Note in: Variational Inference with normalizing flows
 # Other important information in the paper
 

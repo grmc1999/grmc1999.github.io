@@ -5,10 +5,10 @@ For this method: Gaussian Autoregressive functions
 
 ## Remark Variational Autoencoder (VAE):
 
-$$
+\begin{equation}
 \log p(x) \geq \langle \log p(x,z) - \log q(z|x) \rangle_{q(z|x)} = L(x,\theta) \\
 L(x,\theta) =\log p(x)-\mathbb D_{KL}(q(z|x)\Vert p(z|x))
-$$
+\end{equation}
 
 Idea of context in latent variable: $q(z_a,z_b|x)=q(z_a,x)q(z_b|z_a,x)$
 

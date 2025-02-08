@@ -15,7 +15,7 @@ $$
 L(x,\theta) =\log p(x)-\mathbb D_{KL}(q(z|x)\Vert p(z|x))
 $$
 
-Idea of context in latent variable: $$q(z_a,z_b|x)=q(z_a,x)q(z_b|z_a,x)$$ $$\sqrt{3x-1}+(1+x)^2$$
+Idea of context in latent variable: $$q(z_a,z_b|x)=q(z_a,x)q(z_b|z_a,x)$$
 
 ## COMPUTATIONAL INTRACTABILITY
 
@@ -24,14 +24,14 @@ Idea of context in latent variable: $$q(z_a,z_b|x)=q(z_a,x)q(z_b|z_a,x)$$ $$\sqr
 
 ## Remark Normalizing Flows (NF):
 
-Start with simple, computationally efficient distribution and apply invertible parametrized transformation $f_t$
+Start with simple, computationally efficient distribution and apply invertible parametrized transformation $$f_t$$
 
 $$
 z_0 \sim q(z_0|x),z_t=f_t(z_{t-1},x) \forall t=1,...,T \\
 \log q(z_T|x)=\log (z_0|x)- \sum^T_{t=1} \log \det \left \vert \frac{d z_t}{d z_{t-1}} \right \vert
 $$
 
-Originally: $f(z_{t-1}=z_{t-1}+uh(w^\top z_{t-1} +b)$
+Originally: $$f(z_{t-1}=z_{t-1}+uh(w^\top z_{t-1} +b)$$
 
 ## INVERSE AUTOREGRESSIVE TRANSFORMATION
 

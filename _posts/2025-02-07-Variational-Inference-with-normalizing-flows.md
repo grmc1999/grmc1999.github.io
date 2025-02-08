@@ -1,5 +1,6 @@
 ---
 layout: post
+title: Learning in directed models
 ---
 # Note in: Variational Inference with normalizing flows
 # Other important information in the paper

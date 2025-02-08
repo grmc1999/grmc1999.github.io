@@ -1,5 +1,6 @@
 ---
 layout: post
+title: Learning in directed models
 ---
 
 # Notes on: Improved Variational Inference with Inverse Autoregressive Flow

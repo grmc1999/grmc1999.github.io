@@ -30,7 +30,7 @@ Given a Bayesian setting, approximate posterior distribution over latent variabl
 Given random variable: $$X,Z$$
 
 $$
-P(Z|X)=\frac{P(X|Z)P(Z)}{P(X)}
+P(Z\mid X)=\frac{P(X\mid Z)P(Z)}{P(X)}
 $$
 
 In most of cases, solving the marginalization on unknown latent variables is intractable:
@@ -39,7 +39,7 @@ $$
 P(X)=\int P(X,Z) dZ
 $$
 
-To tackle this problem, variational methods are used to approximate $$P(Z\|X)$$, this is normally a parametrized function $$q_{\theta}(X\|Z)$$ that is meant to approximate posterior. Using this approximation log-likelihood is simplified in a suitable form for learning.
+To tackle this problem, variational methods are used to approximate $$P(Z \mid X)$$, this is normally a parametrized function $$q_{\theta}(X\|Z)$$ that is meant to approximate posterior. Using this approximation log-likelihood is simplified in a suitable form for learning.
 
 $$
 \log p_{\theta}(x)= \int \log p_{\theta}(x|z)p(z)dz \\ 

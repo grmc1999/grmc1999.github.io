@@ -39,7 +39,7 @@ $$
 P(X)=\int P(X,Z) dZ
 $$
 
-To tackle this problem, variational methods are used to approximate $$P(Z|X)$$, this is normally a parametrized function $q_{\theta}(X|Z)$ that is meant to approximate posterior. Using this approximation log-likelihood is simplified in a suitable form for learning.
+To tackle this problem, variational methods are used to approximate $$P(Z|X)$$, this is normally a parametrized function $$q_{\theta}(X|Z)$$ that is meant to approximate posterior. Using this approximation log-likelihood is simplified in a suitable form for learning.
 
 $$
 \log p_{\theta}(x)= \int \log p_{\theta}(x|z)p(z)dz \\ 

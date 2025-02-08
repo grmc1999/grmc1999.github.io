@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: Contents
 ---
 This site is intended to share my exploration of research topics that interest me.

@@ -27,7 +27,7 @@ title: Learning in directed models
 
 Given a Bayesian setting, approximate posterior distribution over latent variables with a function. This is, given random variable 
 
-Given random variable: $X,Z$
+Given random variable: $$X,Z$$
 
 $$
 P(Z|X)=\frac{P(X|Z)P(Z)}{P(X)}

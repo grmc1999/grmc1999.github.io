@@ -11,15 +11,15 @@ For this method: Gaussian Autoregressive functions
 ## Remark Variational Autoencoder (VAE):
 
 $$
-\log p(x) \geq \langle \log p(x,z) - \log q(z|x) \rangle_{q(z|x)} = L(x,\theta) \\
-L(x,\theta) =\log p(x)-\mathbb D_{KL}(q(z|x)\Vert p(z|x))
+\log p(x) \geq \langle \log p(x,z) - \log q(z \mid x) \rangle_{q(z \mid x)} = L(x,\theta) \\
+L(x,\theta) =\log p(x)-\mathbb D_{KL}(q(z \mid x)\Vert p(z \mid x))
 $$
 
-Idea of context in latent variable: $$q(z_a,z_b|x)=q(z_a,x)q(z_b|z_a,x)$$
+Idea of context in latent variable: $$q(z_a,z_b \mid x)=q(z_a,x)q(z_b \mid z_a,x)$$
 
 ## COMPUTATIONAL INTRACTABILITY
 
-1. Computationally efficient to compute and differentiate $$q(z|x)$$
+1. Computationally efficient to compute and differentiate $$q(z \mid x)$$
 2. Computationally efficient to sample
 
 ## Remark Normalizing Flows (NF):
@@ -27,8 +27,8 @@ Idea of context in latent variable: $$q(z_a,z_b|x)=q(z_a,x)q(z_b|z_a,x)$$
 Start with simple, computationally efficient distribution and apply invertible parametrized transformation $$f_t$$
 
 $$
-z_0 \sim q(z_0|x),z_t=f_t(z_{t-1},x) \forall t=1,...,T \\
-\log q(z_T|x)=\log (z_0|x)- \sum^T_{t=1} \log \det \left \vert \frac{d z_t}{d z_{t-1}} \right \vert
+z_0 \sim q(z_0 \mid x),z_t=f_t(z_{t-1},x) \forall t=1,...,T \\
+\log q(z_T \mid x)=\log (z_0|x)- \sum^T_{t=1} \log \det \left \vert \frac{d z_t}{d z_{t-1}} \right \vert
 $$
 
 Originally: $$f(z_{t-1}=z_{t-1}+uh(w^\top z_{t-1} +b)$$

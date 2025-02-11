@@ -15,7 +15,7 @@ $$
 L(x,\theta) =\log p(x)-\mathbb D_{KL}(q(z \mid x)\Vert p(z \mid x))
 $$
 
-Idea of context in latent variable: $$q(z_a,z_b \mid x)=q(z_a,x)q(z_b \mid z_a,x)$$
+Idea of context in latent variable: $q(z_a,z_b \mid x)=q(z_a,x)q(z_b \mid z_a,x)$
 
 ## COMPUTATIONAL INTRACTABILITY
 

@@ -48,12 +48,12 @@ Inverse operation is defined: $$\epsilon_i=\frac{y_i-\mu_i (y_{1:i-1})}{\sigma_i
 
 ## Algorithm IAF
 
-1. Input: $x$: data point, $\theta$: model parameters, Encoder definition: $$f_\theta(x)$$, Autoregressive definition $$g_\theta^t(z,h)$$
-2. $$[\mu,\sigma,h] \leftarrow f_\theta(x)$$
-3. $$\epsilon \sim \mathcal N(0,I)$$
-4. $$l \leftarrow - \left \Vert \log \sigma + \frac{1}{2} \epsilon^2 + \frac{1}{2} \log (2 \pi) \right \Vert_\infty$$
+1. Input: $$x$$: data point, $$\theta$$: model parameters, Encoder definition: $$f_\theta(x)$$, Autoregressive definition $$g_\theta^t(z,h)$$
+2. :$$[\mu,\sigma,h] \leftarrow f_\theta(x)$$
+3. :$$\epsilon \sim \mathcal N(0,I)$$
+4. :$$l \leftarrow - \left \Vert \log \sigma + \frac{1}{2} \epsilon^2 + \frac{1}{2} \log (2 \pi) \right \Vert_\infty$$
 5. for $$t=1:T$$:
-    1. $$[m,s]\leftarrow g_\theta^t(z,h)$$
-    2. $$\sigma \leftarrow \sigma(s)$$
-    3. $$z \leftarrow \sigma \odot z + (1-\sigma) \odot m$$
-    4. $$l \leftarrow l - \Vert \log \sigma \Vert_\infty$$
+    1. :$$[m,s]\leftarrow g_\theta^t(z,h)$$
+    2. :$$\sigma \leftarrow \sigma(s)$$
+    3. :$$z \leftarrow \sigma \odot z + (1-\sigma) \odot m$$
+    4. :$$l \leftarrow l - \Vert \log \sigma \Vert_\infty$$

@@ -51,14 +51,14 @@ $$
 
 ### Amortized Inference
 
-Given a probabilistic model $p(x,y)$ for $X$ as latent variables and $Y$ as observed variables, amortized inference search for a parametrized mapping $g_{\theta}: Y \rightarrow P(X); y \mapsto q_{\theta}(x \mid z)$  such that $q_{\theta}(x \mid z)$ is near to $p(x \mid z)$. Particularly, this method apply complex parametrization to “integrate” the information of each $x_i$ is considered in the model, therefore is possible to train the model in batch using SVI.
+Given a probabilistic model $$p(x,y)$$ for $$X$$ as latent variables and $$Y$$ as observed variables, amortized inference search for a parametrized mapping $$g_{\theta}: Y \rightarrow P(X); y \mapsto q_{\theta}(x \mid z)$$  such that $$q_{\theta}(x \mid z)$$ is near to $$p(x \mid z)$$. Particularly, this method apply complex parametrization to “integrate” the information of each $$x_i$$ is considered in the model, therefore is possible to train the model in batch using SVI.
 
 This method is basically the use of MCMC to find mapping between latent variables.
 
 ## Main challenges in VI
 
-1. Efficient computation of  $\nabla_{\phi}\left\langle \log p_{\theta}(x \mid z) \right\rangle_{q_{\theta}(z \mid x)}$
-2. Choosing richiest computationally-feasible $q()$
+1. Efficient computation of  $$\nabla_{\phi}\left\langle \log p_{\theta}(x \mid z) \right\rangle_{q_{\theta}(z \mid x)}$$
+2. Choosing richiest computationally-feasible $$q()$$
 
 ## From Amortized variational inferece
 
@@ -66,14 +66,14 @@ This method is basically the use of MCMC to find mapping between latent variable
 
 reparametrization of known distribution with a differentiable transformation
 
-1. Reparametrization: reparametrization of known distribution with a differentiable transformation $z \sim N(z \mid \mu,\sigma^2) \iff z=\mu+\sigma\epsilon \ ; \ \epsilon \sim N(0,1)$
-2. Backpropagration with montecarlo: Differentiate with respect to parameters $\phi$ of variational distribution, using monte carlo from the sample distribution $\nabla_\phi \left \langle f_\theta(z) \right \rangle_{q_\phi(z)} \iff \left \langle \nabla_\phi f_\theta(\mu+\sigma\epsilon) \right \rangle_{N\sim\epsilon(0,1)}$
+1. Reparametrization: reparametrization of known distribution with a differentiable transformation $$z \sim N(z \mid \mu,\sigma^2) \iff z=\mu+\sigma\epsilon \ ; \ \epsilon \sim N(0,1)$$
+2. Backpropagration with montecarlo: Differentiate with respect to parameters $$\phi$$ of variational distribution, using monte carlo from the sample distribution $$\nabla_\phi \left \langle f_\theta(z) \right \rangle_{q_\phi(z)} \iff \left \langle \nabla_\phi f_\theta(\mu+\sigma\epsilon) \right \rangle_{N\sim\epsilon(0,1)}$$
 
 # METHOD
 
 ## Inference Networks
 
-An example of the simplest kind of neural network for amortized variational inferece is $q_\phi(z \mid x)=N(z \mid \mu_\phi,diag(\sigma_\phi^2(x)))$
+An example of the simplest kind of neural network for amortized variational inferece is $$q_\phi(z \mid x)=N(z \mid \mu_\phi,diag(\sigma_\phi^2(x)))$$
 
 ### Deep latent Gaussian Models
 
@@ -99,7 +99,7 @@ z_k= f_k( ... f_2 ( f_1 f_0( z_0 )) ...) \Rightarrow \log q_k(z_k)=\log q_0(z_0)
 
 $$
 
-An important property of the successive transformations is the Law Of Unconscious Statistician, i.e. for Normalizing flows, expectations of $q_k$ can be computed without explictly knowing $q_K:\langle h(z) \rangle_{q_k} = \langle f_k( ... f_2 ( f_1 f_0( z_0 )) ...) \rangle_{q_0}$ 
+An important property of the successive transformations is the Law Of Unconscious Statistician, i.e. for Normalizing flows, expectations of $q_k$ can be computed without explictly knowing $$q_K:\langle h(z) \rangle_{q_k} = \langle f_k( ... f_2 ( f_1 f_0( z_0 )) ...) \rangle_{q_0}$$ 
 
 The sequence of contractions and expansions allow more expressiveness, starting from a simple distribution.
 
@@ -109,11 +109,11 @@ The sequence of contractions and expansions allow more expressiveness, starting 
 
 Compute gradient of a jacobian is unstable due matrix inverses.
 
-for $f(z)=z+uh(w^\top z+b); w \in \mathbb R^D, u \in \mathbb R^D, b \in \mathbb R$ log-det-jacobian is O(D) and $h( ·)$ a smooth element-wise non-linearity with derivative $h’(·)$
+for $$f(z)=z+uh(w^\top z+b); w \in \mathbb R^D, u \in \mathbb R^D, b \in \mathbb R$$ log-det-jacobian is O(D) and $$h( ·)$$ a smooth element-wise non-linearity with derivative $$h’(·)$$
 
 using matrix determinant lemma:
 
-$\left | \det \frac{\partial f}{\partial z} \right | =  \left | \det (I+u\psi(z)^\top)  \right | = |1+u^\top \psi(z)|$
+$$\left | \det \frac{\partial f}{\partial z} \right | =  \left | \det (I+u\psi(z)^\top)  \right | = |1+u^\top \psi(z)|$$
 
 The application to the initial distribution is:
 

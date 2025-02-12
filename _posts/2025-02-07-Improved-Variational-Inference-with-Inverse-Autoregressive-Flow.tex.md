@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Notes on \: Improved Variational Inference with Inverse Autoregressive Flow
+title:  Improved Variational Inference with Inverse Autoregressive Flow
 ---
 
 # Notes on: Improved Variational Inference with Inverse Autoregressive Flow

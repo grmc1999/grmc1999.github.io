@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Improved Variational Inference with Inverse Autoregressive Flow
+title:  Implicit Generation and Modeling with Energy-Based Models
 ---
 
 # Notes on: Improved Variational Inference with Inverse Autoregressive Flow

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Variational Inference with normalizing flows
+title: Denoising Diffusion Probabilistic Models
 ---
 
 Diffusion models:

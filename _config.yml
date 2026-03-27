@@ -1,9 +1,12 @@
-baseurl: /home
+url: "https://grmc1999.github.io"
+baseurl: ""
+title: Guillermo Moreno
 #title: Probabilistic graphical modeling course
 #subtitle: Lecture notes for Stanford cs228.
 author: Guillermo Moreno
 simple_search: http://google.com/search
 description: Personal Web page.
+ga_measurement_id: "" # Example: G-XXXXXXXXXX
 #name: cs228-notes
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 permalink: /articles/:short_year/:title

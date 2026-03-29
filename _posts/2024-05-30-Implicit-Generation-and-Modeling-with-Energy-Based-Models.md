@@ -5,55 +5,61 @@ title:  Implicit Generation and Modeling with Energy-Based Models
 
 # Notes on: Improved Variational Inference with Inverse Autoregressive Flow
 
-Inverse Autoregressive Flows scale well in high dimensional latent spaces
-For this method: Gaussian Autoregressive functions
 
-## Remark Variational Autoencoder (VAE):
+# Contributions
 
-$$
-\log p(x) \geq \langle \log p(x,z) - \log q(z \mid x) \rangle_{q(z \mid x)} = L(x,\theta) \\
-L(x,\theta) =\log p(x)-\mathbb D_{KL}(q(z \mid x)\Vert p(z \mid x))
-$$
+1. Escalable algorithms for EBM
+2. Show compositionality, decorruption and inpainting
+3. Useful for: out of distribution classification, adversarially robust class, multi-step trajectory prediction and online learning
 
-Idea of context in latent variable: $$q(z_a,z_b \mid x)=q(z_a,x)q(z_b \mid z_a,x)$$
+# Definitions
 
-## COMPUTATIONAL INTRACTABILITY
+Energy is represented as a composition of latent and observable variables
 
-1. Computationally efficient to compute and differentiate $$q(z \mid x)$$
-2. Computationally efficient to sample
+Lavengin Dynamics is a gradient based MCMC
 
-## Remark Normalizing Flows (NF):
+# Energy-Based Models Sampling
 
-Start with simple, computationally efficient distribution and apply invertible parametrized transformation $$f_t$$
+$X \in \mathbb \R^D$ for $D$ the dimension of original data, $E_{\theta}(x) \in \mathbb \R$ with $E_{\theta}: \mathbb \R^D \rightarrow \mathbb \R$ a function parametrized by trainable parameters $\theta$, as a neural network
 
 $$
-z_0 \sim q(z_0 \mid x),z_t=f_t(z_{t-1},x) \forall t=1,...,T \\
-\log q(z_T \mid x)=\log (z_0|x)- \sum^T_{t=1} \log \det \left \vert \frac{d z_t}{d z_{t-1}} \right \vert
+P_{\theta}(x) = \frac{\exp (- E_{\theta}(x))}{Z(\theta)} \\
+Z(\theta)=\int \exp(-E_{\theta}(x)) dx
 $$
 
-Originally: $$f(z_{t-1}=z_{t-1}+uh(w^\top z_{t-1} +b)$$
+$P_{\theta}$ is hard to sample. Lavengin Dynamics is used for sampling efficiently
 
-## INVERSE AUTOREGRESSIVE TRANSFORMATION
+$$
+\tilde{x}^k= \tilde{x}^{k-1}-\frac{\lambda}{2}\nabla_xE_{\theta}(\tilde{x}^{k-1})+w^k;w^k \sim N(0, \lambda) \\
+\tilde{x}^k \sim q_\theta; k \rightarrow \infty;\lambda \rightarrow 0 \Rightarrow q_\theta \rightarrow p_\theta
+$$
 
-Jacobian is lower triangular
+Where $E_{\theta}$ has a “deconvolution” architecture, in this case is implemented as the gradient of the architecture.
 
-Sampling process of $$y$$: $$y_0=u_0+\sigma_0 \odot \epsilon_0 ;y_i=\mu_i(y_{1:i-1})+\sigma_i(y_{1:i-1})\odot\epsilon_i$ for $i>0$$
+# Maximum likelihood training
 
-Inverse operation is defined: $$\epsilon_i=\frac{y_i-\mu_i (y_{1:i-1})}{\sigma_i(y_{1:i-1})}$ then $\log \det \left \vert \frac{d \epsilon}{d y} \right \vert = \sum_{i=1}^D -\log \sigma_i(y)$$
+$$
+\min_\theta L_{ML}(\theta)=\langle - \log P_\theta(x) \rangle_{P_D} \\
+L_{ML}(\theta)= E_\theta(x) - \log(Z(\theta))\\
+L_{ML}(\theta)= \langle \nabla_\theta E_\theta(x^+) \rangle_{x^+ \sim P_D} - \langle \nabla_\theta E_\theta (x^-) \rangle_{x^- \sim P_\theta}
+$$
 
-## Architecture
+Lack of gradient is important, it controls diversity on likelihood and model collapse
 
-1. Perform deterministically bottom-up
-2. Sampling posterior top-down
+Sample Replay Buffer: Saves generated $\tilde{x}$ to initialize MCMC Lavengin dynamics, with 95% from Buffer and 5% with noise
 
-## Algorithm IAF
+# Pseudo-Algorithm
 
-1. Input: $$x$$: data point, $$\theta$$: model parameters, Encoder definition: $$f_\theta(x)$$, Autoregressive definition $$g_\theta^t(z,h)$$
-2. :$$[\mu,\sigma,h] \leftarrow f_\theta(x)$$
-3. :$$\epsilon \sim \mathcal N(0,I)$$
-4. :$$l \leftarrow - \left \Vert \log \sigma + \frac{1}{2} \epsilon^2 + \frac{1}{2} \log (2 \pi) \right \Vert_\infty$$
-5. for $$t=1:T$$:
-    1. :$$[m,s]\leftarrow g_\theta^t(z,h)$$
-    2. :$$\sigma \leftarrow \sigma(s)$$
-    3. :$$z \leftarrow \sigma \odot z + (1-\sigma) \odot m$$
-    4. :$$l \leftarrow l - \Vert \log \sigma \Vert_\infty$$
+## Energy training algorithm
+
+1. Input: Data $P_D(x)$, Stepsize: $\lambda$, number of steps $K$
+2. $B \leftarrow \{\}$
+3. While not converge
+    1.  sample $x^+_i \sim P_D$
+    2. sample $x^0_i \sim B$ with 95% and $x^0_i \sim U$ 5%
+    3. for $k=1:k$ : (*Generate samples with Langevin dynamics)*
+        1. $\tilde{x}^k \leftarrow \tilde{x}^{k-1} - \nabla_\theta E_\theta (\tilde{x}^{k-1} ) + w ; w \sim N(0,\sigma)$
+    4. $x^-_i=\Omega(\tilde{x_i^k})$ #no grad
+    5. $\Delta \theta \leftarrow \nabla_\theta \frac{1}{N}\sum\alpha(E_\theta(x^+_i)^2+E_\theta(x^-_i)^2)+ E_\theta(x^+_i)-E_\theta(x^-_i) \iff \min_\theta (\alpha L_2 + L_{ML})$  (*Optimize Objective*)
+    6. Update $\theta$ with $\Delta \theta$ using an optimizer
+    7. $B\leftarrow B \cup \tilde{x}_i$

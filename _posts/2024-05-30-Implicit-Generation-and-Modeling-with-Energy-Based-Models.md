@@ -20,7 +20,7 @@ Lavengin Dynamics is a gradient based MCMC
 
 # Energy-Based Models Sampling
 
-$$X \in \mathbb{R}^D$$ for $$D$$ the dimension of original data, $$E_{\theta}(x) \in \mathbb{R}$$ with $$E_{\theta}: \mathbb{R}^D \rightarrow \mathbb \R$$ a function parametrized by trainable parameters $\theta$, as a neural network
+$$X \in \mathbb{R}^D$$ for $$D$$ the dimension of original data, $$E_{\theta}(x) \in \mathbb{R}$$ with $$E_{\theta}: \mathbb{R}^D \rightarrow \mathbb{R}$$ a function parametrized by trainable parameters $\theta$, as a neural network
 
 $$
 P_{\theta}(x) = \frac{\exp (- E_{\theta}(x))}{Z(\theta)} \\

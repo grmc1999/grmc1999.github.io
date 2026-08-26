@@ -21,13 +21,13 @@ Specifically, simultaneously factorize the information from each available targe
 
 ## Information theory: Background
 
-Let $$\textbf{x}=(x_1,x_2,\ldots,x_n)$$ be an $$n$$-dimensional random variable with probability distribution $$p(\textbf{x})$$. The Shannon differential entropy is:
+Let $\textbf{x}=(x_1,x_2,\ldots,x_n)$ be an $n$-dimensional random variable with probability distribution $p(\textbf{x})$. The Shannon differential entropy is:
 
 $$
 H(\textbf{x})=-\langle\ln p(\textbf{x})\rangle_{\textbf{x}}.
 $$
 
-Let $$\textbf{z}=(z_1,z_2,\ldots,z_m)$$ be an $$m$$-dimensional random variable with probability distribution $$p(\textbf{z})$$. The mutual information between $$\textbf{x}$$ and $$\textbf{z}$$ is:
+Let $\textbf{z}=(z_1,z_2,\ldots,z_m)$ be an $m$-dimensional random variable with probability distribution $p(\textbf{z})$. The mutual information between $\textbf{x}$ and $\textbf{z}$ is:
 
 $$
 \begin{aligned}
@@ -49,18 +49,18 @@ $$
 =\{(\textbf{x}_i,\textbf{y}_i,\textbf{d}_i)\}_{i=1}^{N}
 $$
 
-be a collection of $$M$$ domains, with one labeled source domain and $$M-1$$ unlabeled target domains.
+be a collection of $M$ domains, with one labeled source domain and $M-1$ unlabeled target domains.
 
-- $$\textbf{x}_i$$: the $$i$$-th point. For image classification, $$\textbf{x}_i\in\mathbb{R}^{H\times W\times C}$$, with $$H,W,C$$ the dimensions of the images.
-- $$\textbf{y}_i$$: the label of the $$i$$-th point. For image classification, $$\textbf{y}_i\in\mathbb{R}^{K}$$, with $$K$$ classes.
-- $$\textbf{d}_i$$: the domain label of the $$i$$-th point. In general, $$\textbf{d}_i\in\mathbb{R}^{M}$$, with $$M$$ domains.
+- $\textbf{x}_i$: the $i$-th point. For image classification, $\textbf{x}_i\in\mathbb{R}^{H\times W\times C}$, with $H,W,C$ the dimensions of the images.
+- $\textbf{y}_i$: the label of the $i$-th point. For image classification, $\textbf{y}_i\in\mathbb{R}^{K}$, with $K$ classes.
+- $\textbf{d}_i$: the domain label of the $i$-th point. In general, $\textbf{d}_i\in\mathbb{R}^{M}$, with $M$ domains.
 
-A latent space with shared and private features $$\textbf{z}=[\textbf{z}_s,\textbf{z}_p]$$ of $$\textbf{x}$$ is searched by the model. With these variables, the following mappings are proposed:
+A latent space with shared and private features $\textbf{z}=[\textbf{z}_s,\textbf{z}_p]$ of $\textbf{x}$ is searched by the model. With these variables, the following mappings are proposed:
 
-- $$\textbf{z}_s=E_{\theta_s}(\textbf{x},\textbf{d})$$
-- $$\textbf{z}_p=E_{\theta_p}(\textbf{x},\textbf{d})$$
-- $$\hat{\textbf{y}}=C_{\theta_c}(\textbf{z}_s)$$
-- $$\hat{\textbf{d}}=D_{\psi}(\textbf{z})$$
+- $\textbf{z}_s=E_{\theta_s}(\textbf{x},\textbf{d})$
+- $\textbf{z}_p=E_{\theta_p}(\textbf{x},\textbf{d})$
+- $\hat{\textbf{y}}=C_{\theta_c}(\textbf{z}_s)$
+- $\hat{\textbf{d}}=D_{\psi}(\textbf{z})$
 
 The aim is to maximize:
 
@@ -73,7 +73,7 @@ L(\theta_s,\theta_p,\theta_c;\textbf{x},\textbf{y},\textbf{d})
 \end{aligned}
 $$
 
-Note: a term minimizing the mutual information between $$\textbf{z}_p$$ and $$\textbf{z}_s$$ might be considered. However, computing mutual information is intractable due to the complex joint distribution $$p(\textbf{z}_s,\textbf{z}_p)$$.
+Note: a term minimizing the mutual information between $\textbf{z}_p$ and $\textbf{z}_s$ might be considered. However, computing mutual information is intractable due to the complex joint distribution $p(\textbf{z}_s,\textbf{z}_p)$.
 
 ## Optimization
 
@@ -85,14 +85,14 @@ I(\textbf{x};\textbf{z})
 +\left\langle\ln q(\textbf{x}\mid\textbf{z};\phi)\right\rangle_{p(\textbf{x},\textbf{z})}.
 $$
 
-A variational approximation $$q$$ is used because the computation of
+A variational approximation $q$ is used because the computation of
 
 $$
 p(\textbf{x}\mid\textbf{z})
 =\frac{p(\textbf{z}\mid\textbf{x})p(\textbf{x})}{p(\textbf{z})}
 $$
 
-is intractable. This lower bound is applied to $$\textbf{d}$$ and $$\textbf{y}$$:
+is intractable. This lower bound is applied to $\textbf{d}$ and $\textbf{y}$:
 
 $$
 \begin{aligned}
@@ -110,17 +110,17 @@ $$
 
 A mapping for reconstruction is proposed:
 
-- $$\hat{\textbf{x}}=F_\phi(\textbf{z})$$
+- $\hat{\textbf{x}}=F_\phi(\textbf{z})$
 
 The variational distributions are defined as:
 
-- $$\ln q_\phi(\textbf{x}\mid\textbf{z})\propto-\Vert\textbf{x}-F_\phi(\textbf{z})\Vert_1$$
-- $$\ln q_\psi(\textbf{d}\mid\textbf{z})=\textbf{d}^{\top}\ln D_\psi(\textbf{z})$$
-- $$\ln p(\textbf{y}\mid\textbf{z}_s)=\textbf{y}^{\top}\ln C_{\theta_c}(\textbf{z}_s)$$
+- $\ln q_\phi(\textbf{x}\mid\textbf{z})\propto-\Vert\textbf{x}-F_\phi(\textbf{z})\Vert_1$
+- $\ln q_\psi(\textbf{d}\mid\textbf{z})=\textbf{d}^{\top}\ln D_\psi(\textbf{z})$
+- $\ln p(\textbf{y}\mid\textbf{z}_s)=\textbf{y}^{\top}\ln C_{\theta_c}(\textbf{z}_s)$
 
 Adversarial training is used to optimize a minimax saddle-point problem.
 
-### Optimizing $$\phi$$ of decoder
+### Optimizing $\phi$ of decoder
 
 $$
 \hat{\phi}=\arg\min_\phi L_F
@@ -130,7 +130,7 @@ $$
 \right\Vert_1.
 $$
 
-### Optimizing $$\psi$$ of domain classifier
+### Optimizing $\psi$ of domain classifier
 
 $$
 \begin{aligned}
@@ -142,7 +142,7 @@ $$
 \end{aligned}
 $$
 
-### Optimizing $$\theta_c$$ of label classifier
+### Optimizing $\theta_c$ of label classifier
 
 The classifier loss combines supervised classification on the source domain, entropy minimization on target predictions, and a batch-level term that encourages diverse target predictions. Let
 
@@ -165,7 +165,7 @@ $$
 \end{aligned}
 $$
 
-### Optimizing $$\theta_p$$ of private encoder
+### Optimizing $\theta_p$ of private encoder
 
 $$
 \begin{aligned}
@@ -179,7 +179,7 @@ $$
 \end{aligned}
 $$
 
-### Optimizing $$\theta_s$$ of shared encoder
+### Optimizing $\theta_s$ of shared encoder
 
 The shared encoder combines reconstruction, adversarial domain confusion, and the label-classifier objective:
 
@@ -200,4 +200,4 @@ $$
 \end{aligned}
 $$
 
-The sign of the domain term for $$E_{\theta_s}$$ is reversed relative to the domain classifier's own optimization. This makes the shared features domain-invariant, while the private encoder is trained to retain domain information.
+The sign of the domain term for $E_{\theta_s}$ is reversed relative to the domain classifier's own optimization. This makes the shared features domain-invariant, while the private encoder is trained to retain domain information.

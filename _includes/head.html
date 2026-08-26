@@ -13,9 +13,18 @@
   <link href='//fonts.googleapis.com/css?family=Lato:400,400italic' rel='stylesheet' type='text/css'>
   {%- endif -%}
 
-  <!-- Load up MathJax script if needed ... specify in /_data/options.yml file-->
+  <!-- Load MathJax when enabled in /_data/options.yml. -->
   {%- if site.data.options.mathjax -%}
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   {%- endif -%}
 
   {%- if site.ga_measurement_id -%}

@@ -12,6 +12,16 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 permalink: /articles/:short_year/:title
 timezone: America/New_York
 excerpt_separator: <!--more-->  # you can specify your own separator, of course.
+collections:
+  questions:
+    output: true
+    permalink: /questions/:name/
+defaults:
+  - scope:
+      path: ""
+      type: questions
+    values:
+      layout: question
 exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'README.md']
 post:
   template: _post.txt

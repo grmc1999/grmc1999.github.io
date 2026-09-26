@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<h1>{{ page.title }}</h1>
+{% if page.date %}
+<p class="subtitle">{{ page.date | date: "%B %-d, %Y" }}</p>
+{% endif %}
+
+{{ content }}
+
+{% if page.sources and page.sources != empty %}
+<section class="question-sources">
+  <h2>Sources</h2>
+  <ul>
+    {% for source in page.sources %}
+    <li>
+      {% if source.url %}
+      <a href="{{ source.url }}">{{ source.title | default: source.url }}</a>
+      {% else %}
+      {{ source.title | default: source }}
+      {% endif %}
+      {% if source.authors %} — {{ source.authors }}{% endif %}
+      {% if source.publication %}, <em>{{ source.publication }}</em>{% endif %}
+      {% if source.year %} ({{ source.year }}){% endif %}
+      {% if source.type %} [{{ source.type }}]{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

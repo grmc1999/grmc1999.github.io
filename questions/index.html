@@ -1,0 +1,21 @@
+---
+layout: page
+title: questions
+permalink: /questions/
+---
+
+<p>Research and intellectual questions, together with sources that help frame and explore them.</p>
+
+{% assign questions = site.questions | sort: "date" | reverse %}
+{% if questions.size > 0 %}
+<ul class="posts">
+  {% for question in questions %}
+  <li>
+    {% if question.date %}<span>{{ question.date | date_to_string }}</span> » {% endif %}
+    <a href="{{ question.url | relative_url }}" title="{{ question.title }}">{{ question.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No questions have been published yet.</p>
+{% endif %}
